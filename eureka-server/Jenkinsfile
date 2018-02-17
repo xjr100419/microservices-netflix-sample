@@ -26,8 +26,10 @@ node {
 
 
         stage ('Deploy') {
-            sh "kubectl apply -f kubernetes/deployment.yml"
-            sh "kubectl apply -f kubernetes/svc.yml"
+            dir ('eureka-server') {
+                sh "kubectl apply -f kubernetes/deployment.yml"
+                sh "kubectl apply -f kubernetes/svc.yml"
+            }
         }
 
     }
