@@ -17,8 +17,10 @@ node {
         }
 
         stage('Image') {
+            dir ('eureka-server') {
                 def app = docker.build "192.168.80.180:5000/demo/eureka-server:${env.version}"
                 app.push()
+            }
         }
 
 
