@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: hystrix
+  name: hystrix
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+        -
+          image: 192.168.80.180:5000/demo/hystrix:latest
+          name: eureka
+          ports:
+            -
+              containerPort: 8090
+          env:
+            - name: EUREKA_URL
+              value: http://eureka-server:8761/eureka
