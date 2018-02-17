@@ -3,7 +3,9 @@ kind: Service
 metadata: 
   name: eureka-service
   namespace: default
-spec: 
+spec:
+  externalIPs:
+      - 192.168.80.186
   ports: 
     - 
       port: 8761
