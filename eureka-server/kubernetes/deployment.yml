@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         -
-          image: luizkowalski/eureka-server
+          image: 192.168.80.180:5000/demo/eureka-server:latest
           name: eureka
           ports:
             -

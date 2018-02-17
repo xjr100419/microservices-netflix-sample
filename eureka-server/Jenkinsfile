@@ -13,12 +13,19 @@ node {
                 def pom = readMavenPom file:'pom.xml'
                 print pom.version
                 env.version = pom.version
+
+
+                tag = pom.version
+                    appName = "eureka-server"
+                    registryHost = "192.168.80.180:5000/demo/"
+                    imageName = "${registryHost}${appName}:${tag}"
+                    env.BUILDIMG=imageName
             }
         }
 
         stage('Image') {
             dir ('eureka-server') {
-                def app = docker.build "192.168.80.180:5000/demo/eureka-server:${env.version}"
+                def app = docker.build "${imageName}"
                 app.push()
             }
         }
@@ -27,7 +34,8 @@ node {
 
         stage ('Deploy') {
             dir ('eureka-server') {
-                sh "kubectl apply -f kubernetes/deployment.yml"
+                sh "sed 's#192.168.80.180:5000/demo/eureka-server:latest#'$BUILDIMG'#' kubernetes/deployment.yml | kubectl apply -f -"
+
                 sh "kubectl apply -f kubernetes/svc.yml"
             }
         }
