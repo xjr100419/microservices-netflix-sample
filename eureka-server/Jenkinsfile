@@ -25,6 +25,7 @@ node {
 
         stage('Image') {
             dir ('eureka-server') {
+                sh "docker login 192.168.80.180:5000 -u admin -p 123456"
                 def app = docker.build "${imageName}"
                 app.push()
             }
