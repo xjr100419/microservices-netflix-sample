@@ -13,12 +13,19 @@ node {
                 def pom = readMavenPom file:'pom.xml'
                 print pom.version
                 env.version = pom.version
+
+
+                tag = pom.version
+                    appName = "account-service"
+                    registryHost = "192.168.80.180:5000/demo/"
+                    imageName = "${registryHost}${appName}:${tag}"
+                    env.BUILDIMG=imageName
             }
         }
 
         stage('Image') {
             dir ('account-service') {
-                def app = docker.build "localhost:5000/account-service:${env.version}"
+                def app = docker.build "${imageName}"
                 app.push()
             }
         }
