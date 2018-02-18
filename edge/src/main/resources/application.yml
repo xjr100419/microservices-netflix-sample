@@ -1,9 +1,9 @@
 zuul:
   routes:
     contacts-service:
-      path: /contacts/**
+      path: /account/**
       stripPrefix: true
-      serviceId: contacts-service
+      serviceId: account-service
 
 ribbon:
   eureka:
