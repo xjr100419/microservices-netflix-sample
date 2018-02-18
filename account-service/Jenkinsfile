@@ -1,0 +1,36 @@
+node {
+
+    withMaven(maven:'maven') {
+
+        stage('Checkout') {
+            git url: 'https://github.com/xjr100419/microservices-netflix-sample.git', credentialsId: 'github-piomin', branch: 'master'
+        }
+
+        stage('Build') {
+            dir ('account-service') {
+                sh 'mvn clean install'
+
+                def pom = readMavenPom file:'pom.xml'
+                print pom.version
+                env.version = pom.version
+            }
+        }
+
+        stage('Image') {
+            dir ('account-service') {
+                def app = docker.build "localhost:5000/account-service:${env.version}"
+                app.push()
+            }
+        }
+
+        stage ('Deploy') {
+            dir ('account-service') {
+                sh "sed 's#192.168.80.180:5000/demo/account:latest#'$BUILDIMG'#' kubernetes/deployment.yml | kubectl apply -f -"
+
+                sh "kubectl apply -f kubernetes/svc.yml"
+            }
+        }
+
+    }
+
+}

@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: account
+  name: account
+  namespace: default
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: account
+    spec:
+      containers:
+        -
+          image: 192.168.80.180:5000/demo/account:latest
+          name: account
+          ports:
+            -
+              containerPort: 8070
+          env:
+            - name: EUREKA_URL
+              value: http://eureka-service.default.svc.cluster.local:8761/eureka
