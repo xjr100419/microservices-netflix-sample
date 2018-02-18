@@ -18,6 +18,10 @@ eureka:
       instanceId: ${spring.application.name}:${random.int}
     preferIpAddress: false
 
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
 ---
 
 spring:
