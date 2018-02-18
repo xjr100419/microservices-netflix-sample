@@ -15,7 +15,11 @@ node {
                 env.version = pom.version
 
 
-                tag = pom.version
+                sh "git rev-parse --short HEAD > commit-id"
+
+                 tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+
+                //tag = pom.version
                     appName = "account-service"
                     registryHost = "192.168.80.180:5000/demo/"
                     imageName = "${registryHost}${appName}:${tag}"
