@@ -8,6 +8,9 @@ node {
 
         sh "echo $DEMO_PARMS | sed -r 's/\"//g'"
 
+        dir ('account-service') {
+        }
+
     }
     withMaven(maven:'M3') {
 
