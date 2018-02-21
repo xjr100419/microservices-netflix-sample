@@ -1,10 +1,12 @@
 node {
     stage('Checkout') {
-        git url: 'https://github.com/xjr100419/microservices-netflix-sample.git', credentialsId: 'github-piomin', branch: 'master'
+        //git url: 'https://github.com/xjr100419/microservices-netflix-sample.git', credentialsId: 'github-piomin', branch: 'master'
 
-        sh "DEMO_PARMS = echo $DEMO_PARMS | sed -r 's/"//g'  "
+        sh 'echo ${DEMO_PARMS} '
 
-        sh 'echo $DEMO_PARMS '
+        sh "DEMO_PARMS = echo ${DEMO_PARMS} | sed -r 's/"//g'  "
+
+
 
          sh 'echo  ${DEMO_PARMS} '
 
