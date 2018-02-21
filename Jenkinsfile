@@ -4,7 +4,7 @@ node {
 
         sh 'echo ${DEMO_PARMS} '
 
-        sh "DEMO_PARMS = echo ${DEMO_PARMS} | sed -r 's/"//g'  "
+        sh "DEMO_PARMS = echo ${DEMO_PARMS} "
 
 
 
