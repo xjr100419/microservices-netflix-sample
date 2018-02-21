@@ -6,7 +6,7 @@ node {
 
         sh "PARMS=${DEMO_PARMS}"
 
-
+        sh ' cd  $PARMS '
 
          sh 'echo  ${PARMS} '
 
