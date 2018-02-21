@@ -8,8 +8,8 @@ node {
 
     }
     withMaven(maven:'M3') {
-
-         dir (${DEMO_PARMS}) {
+        dirc = "${DEMO_PARMS}"
+         dir (dirc) {
 
             stage('Build') {
                     sh 'mvn clean install'
