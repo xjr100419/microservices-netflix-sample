@@ -11,7 +11,7 @@ environment {
 
         sh "echo $DEMO_PARMS | sed -r 's/\"//g'"
 
-        dir (DIR) {
+        dir ('$DIR') {
         }
 
     }
