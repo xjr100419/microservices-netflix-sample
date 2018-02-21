@@ -4,7 +4,7 @@ node {
 
         sh 'echo ${DEMO_PARMS} '
 
-        sh " PARMS =  ${DEMO_PARMS} "
+        sh "PARMS=${DEMO_PARMS}"
 
 
 
