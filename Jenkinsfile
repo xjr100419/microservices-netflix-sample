@@ -4,11 +4,9 @@ node {
 
         sh 'echo ${DEMO_PARMS} '
 
-        sh "PARMS=${DEMO_PARMS}"
+        sh "DEMO_PARMS=`echo $DEMO_PARMS | sed -r 's/"//g'`"
 
-        sh ' cd  $PARMS '
-
-         sh 'echo  ${PARMS} '
+        sh 'echo ${DEMO_PARMS} '
 
     }
     withMaven(maven:'M3') {
