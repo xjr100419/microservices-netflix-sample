@@ -32,7 +32,6 @@ node {
                     def app = docker.build "${imageName}"
                     app.push()
                 }
-            }
 
 
 
@@ -42,12 +41,11 @@ node {
                     sh "kubectl apply -f kubernetes/svc.yml"
             }
 
-          }
 
         }
 
 
-
+    }
 
 
 }
