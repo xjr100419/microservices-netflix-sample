@@ -8,7 +8,7 @@ node {
 
         sh "echo $DEMO_PARMS | sed -r 's/\"//g'"
 
-        dir ("echo $DEMO_PARMS | sed -r 's/\"//g'") {
+        dir (echo $DEMO_PARMS | sed -r 's/\"//g') {
         }
 
     }
