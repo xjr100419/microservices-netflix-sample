@@ -8,10 +8,9 @@ node {
 
     }
     withMaven(maven:'M3') {
-        dirc = ${DEMO_PARMS}
-         dir (dirc) {
 
             stage('Build') {
+                    sh 'cd  ${DEMO_PARMS}'
                     sh 'mvn clean install'
 
                     def pom = readMavenPom file:'pom.xml'
@@ -27,7 +26,7 @@ node {
             }
 
             stage('Image') {
-
+                    sh 'cd  ${DEMO_PARMS}'
                     sh "docker login 192.168.80.180:5000 -u admin -p 123456"
                     def app = docker.build "${imageName}"
                     app.push()
@@ -36,6 +35,7 @@ node {
 
 
             stage ('Deploy') {
+                    sh 'cd  ${DEMO_PARMS}'
                     sh "sed 's#192.168.80.180:5000/demo/${DEMO_PARMS}:latest#'$BUILDIMG'#' kubernetes/deployment.yml | kubectl apply -f -"
 
                     sh "kubectl apply -f kubernetes/svc.yml"
@@ -43,9 +43,4 @@ node {
 
 
         }
-
-
-    }
-
-
 }
