@@ -8,7 +8,7 @@ node {
 
     }
     withMaven(maven:'M3') {
-        dirc = "${DEMO_PARMS}"
+        dirc = ${DEMO_PARMS}
          dir (dirc) {
 
             stage('Build') {
