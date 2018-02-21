@@ -1,4 +1,7 @@
 node {
+environment {
+        DIR = 'account-service'
+    }
     stage('Checkout') {
         //git url: 'https://github.com/xjr100419/microservices-netflix-sample.git', credentialsId: 'github-piomin', branch: 'master'
 
@@ -8,7 +11,7 @@ node {
 
         sh "echo $DEMO_PARMS | sed -r 's/\"//g'"
 
-        dir ('account-service') {
+        dir (DIR) {
         }
 
     }
