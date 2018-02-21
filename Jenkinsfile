@@ -9,7 +9,7 @@ node {
     }
     withMaven(maven:'M3') {
 
-         dir ('$DEMO_PARMS') {
+         dir (${DEMO_PARMS}) {
 
             stage('Build') {
                     sh 'mvn clean install'
