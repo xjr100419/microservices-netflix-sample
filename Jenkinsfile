@@ -10,7 +10,7 @@ node {
     withMaven(maven:'M3') {
 
             stage('Build') {
-                    sh 'cd  ${DEMO_PARMS}'
+                    sh ' cd  $DEMO_PARMS '
                     sh 'mvn clean install'
 
                     def pom = readMavenPom file:'pom.xml'
