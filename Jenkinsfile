@@ -4,11 +4,11 @@ node {
 
         sh 'echo ${DEMO_PARMS} '
 
-        sh "DEMO_PARMS = echo ${DEMO_PARMS} "
+        sh "export PARMS = echo ${DEMO_PARMS} "
 
 
 
-         sh 'echo  ${DEMO_PARMS} '
+         sh 'echo  ${PARMS} '
 
     }
     withMaven(maven:'M3') {
