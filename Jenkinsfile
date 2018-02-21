@@ -8,7 +8,7 @@ node {
 
         sh "echo $DEMO_PARMS | sed -r 's/\"//g'"
 
-        dir ('account-service') {
+        dir ("echo $DEMO_PARMS | sed -r 's/\"//g'") {
         }
 
     }
